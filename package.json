@@ -1,0 +1,15 @@
+{
+  "name": "generator-d365-ts-webresource",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^7.1.0"
+  }
+}

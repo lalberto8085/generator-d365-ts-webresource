@@ -1,7 +1,7 @@
 {
   "name": "generator-d365-ts-webresource",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple scaffold to generate D365 WebResources in Typescript",
   "main": "index.js",
   "type": "module",
   "scripts": {

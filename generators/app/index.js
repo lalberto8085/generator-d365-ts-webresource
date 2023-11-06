@@ -1,4 +1,5 @@
 import Generator from "yeoman-generator";
+import Path, { join } from "path";
 
 export default class extends Generator {
   namespace = undefined;
@@ -18,21 +19,14 @@ export default class extends Generator {
         default: this.filename,
       },
     ]);
-
     this.namespace = answers.namespace;
     this.filename = answers.filename;
-
-    this.log(this.namespace);
-    this.log(this.filename);
   }
 
   async writing() {
-    this.copyRootFiles();
-    this.copyCodeFiles();
-    this.copyServices();
-  }
+    const templatesRoot = join(this.resolved, "../../../templates");
+    this.sourceRoot(templatesRoot);
 
-  copyRootFiles() {
     this.fs.copy(
       this.templatePath(".eslintrc.json"),
       this.destinationPath(".eslintrc.json")
@@ -69,29 +63,31 @@ export default class extends Generator {
       this.templatePath("webpack.prod.js"),
       this.destinationPath("webpack.prod.js")
     );
-  }
 
-  copyCodeFiles() {
-    this.sourceRoot("/templates/src");
-    this.destinationRoot("/src");
+    // copying code files
+
+    const sourcesRoot = join(templatesRoot, "src");
+    this.sourceRoot(sourcesRoot);
+    this.destinationRoot("src");
 
     this.fs.copy(
       this.templatePath("index.ts"),
       this.destinationPath("index.ts")
     );
     this.fs.copy(
-      this.templatePath("/Form/AccountForm.ts"),
-      this.destinationPath("/Form/AccountForm.ts")
+      this.templatePath("Form/AccountForm.ts"),
+      this.destinationPath("Form/AccountForm.ts")
     );
     this.fs.copy(
-      this.templatePath("/Ribbon/AccountRibbon.ts"),
-      this.destinationPath("/Ribbon/AccountRibbon.ts")
+      this.templatePath("Ribbon/AccountRibbon.ts"),
+      this.destinationPath("Ribbon/AccountRibbon.ts")
     );
-  }
 
-  copyServices() {
-    this.sourceRoot("/templates/src/services");
-    this.destinationRoot("/src/services");
+    // copying services
+
+    const servicesRoot = join(sourcesRoot, "services");
+    this.sourceRoot(servicesRoot);
+    this.destinationRoot("src/services");
 
     this.fs.copy(
       this.templatePath("EnvVarUtils.ts"),

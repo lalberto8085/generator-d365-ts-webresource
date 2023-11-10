@@ -10,7 +10,7 @@ export default class extends Generator {
       {
         type: "input",
         name: "namespace",
-        message: "Client Name/Identifier",
+        message: "Namespace (eg: Company.ProjectName)",
       },
       {
         type: "input",
@@ -19,7 +19,11 @@ export default class extends Generator {
         default: this.filename,
       },
     ]);
-    this.namespace = answers.namespace;
+    this.namespace = answers.namespace
+      .split(".")
+      .filter(x => x !== null && x !== undefined && x.trim() != "")
+      .map(x => `"${x}"`)
+      .join(", ");
     this.filename = answers.filename;
   }
 
@@ -48,7 +52,7 @@ export default class extends Generator {
       this.destinationPath("tsconfig.json")
     );
     this.fs.copyTpl(
-      this.templatePath("webpack.common.js"),
+      this.templatePath("webpack.common.js.template"),
       this.destinationPath("webpack.common.js"),
       {
         filename: this.filename,

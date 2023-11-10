@@ -1,5 +1,5 @@
 import Generator from "yeoman-generator";
-import Path, { join } from "path";
+import { join } from "path";
 
 export default class extends Generator {
   namespace = undefined;
@@ -21,8 +21,8 @@ export default class extends Generator {
     ]);
     this.namespace = answers.namespace
       .split(".")
-      .filter(x => x !== null && x !== undefined && x.trim() != "")
-      .map(x => `"${x}"`)
+      .filter((x) => x !== null && x !== undefined && x.trim() != "")
+      .map((x) => `"${x}"`)
       .join(", ");
     this.filename = answers.filename;
   }
@@ -102,5 +102,9 @@ export default class extends Generator {
       this.templatePath("FlowUtils.ts"),
       this.destinationPath("FlowUtils.ts")
     );
+  }
+
+  install() {
+    this.spawnCommandSync("npm", "install");
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "generator-d365-ts-webresource",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple scaffold to generate D365 WebResources in Typescript",
   "main": "index.js",
   "type": "module",
@@ -17,5 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "yeoman-generator": "^3.1.1"
+  },
+  "repository": {
+    "url": "https://github.com/lalberto8085/generator-d365-ts-webresource"
   }
 }

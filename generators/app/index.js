@@ -36,7 +36,7 @@ export default class extends Generator {
       this.destinationPath(".eslintrc.json")
     );
     this.fs.copy(
-      this.templatePath("x.gitignore"),
+      this.templatePath("_gitignore"),
       this.destinationPath(".gitignore")
     );
     this.fs.copy(

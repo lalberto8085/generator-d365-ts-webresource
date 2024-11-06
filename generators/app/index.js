@@ -105,6 +105,6 @@ export default class extends Generator {
   }
 
   install() {
-    this.spawnCommandSync("npm", "install");
+    this.spawnCommandSync("npm install");
   }
 }
